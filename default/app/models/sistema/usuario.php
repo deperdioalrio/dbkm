@@ -24,7 +24,7 @@ class Usuario extends ActiveRecord {
      * @return string
      */
     public static function getInnerEstado() {
-        return "INNER JOIN (SELECT usuario_id, estado_usuario, descripcion, estado_usuario_at FROM (SELECT * FROM estado_usuario ORDER BY estado_usuario.id DESC ) AS estado_usuario GROUP BY estado_usuario.usuario_id ) AS estado_usuario ON estado_usuario.usuario_id = usuario.id ";
+        return "INNER JOIN (SELECT usuario_id, estado_usuario, descripcion, estado_usuario_at FROM estado_usuario where id in (select max(id) from estado_usuario group by usuario_id) ) AS estado_usuario  ON estado_usuario.usuario_id = usuario.id ";
     }
 
     /**
