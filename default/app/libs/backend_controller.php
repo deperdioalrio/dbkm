@@ -94,7 +94,7 @@ class BackendController extends Controller {
             }
 
             if(APP_UPDATE && (Session::get('perfil_id') != Perfil::SUPER_USUARIO) ) { //Solo el super usuario puede hacer todo
-                if($this->module_name!='dashboard' && $this->controller_name!='index') {
+                if($this->module_name!='dashboard' || $this->controller_name!='index') {
                     $msj = 'Estamos en labores de actualización y mantenimiento.';
                     $msj.= '<br />';
                     $msj.= 'El servicio se reanudará dentro de '.APP_UPDATE_TIME;
